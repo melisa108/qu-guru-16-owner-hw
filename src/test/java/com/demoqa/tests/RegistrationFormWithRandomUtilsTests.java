@@ -4,11 +4,24 @@ import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static com.codeborne.selenide.Condition.*;
-import static com.codeborne.selenide.Selectors.*;
+import static com.codeborne.selenide.Condition.appear;
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
+import static com.demoqa.tests.RandomUtils.*;
+import static com.demoqa.tests.TestData.*;
+import static com.demoqa.tests.TestData.year;
 
-public class RegistrationFormTests {
+public class RegistrationFormWithRandomUtilsTests {
+
+    String firstName = getRandomString(10);
+    String lastName = getRandomString(10);
+    String email = getRandomEmail();
+    String phone = getRandomPhone();
+    String currentAddress = getRandomStringAlphabetic(20);
+    String day = "30";
+    String month = "September";
+    String year = "1965";
 
     @BeforeAll
     static void setUp() {
@@ -25,19 +38,19 @@ public class RegistrationFormTests {
         executeJavaScript("$('footer').remove()");
         executeJavaScript("$('#fixedban').remove()");
 
-        $("#firstName").setValue("Alex");
-        $("#lastName").setValue("Egorov");
-        $("#userEmail").setValue("alex@egorov.com");
+        $("#firstName").setValue(firstName);
+        $("#lastName").setValue(lastName);
+        $("#userEmail").setValue(email);
         $("#genterWrapper").$(byText("Male")).click();
-        $("#userNumber").setValue("1234567890");
+        $("#userNumber").setValue(phone);
         $("#dateOfBirthInput").click();
-        $(".react-datepicker__month-select").selectOption("July");
-        $(".react-datepicker__year-select").selectOption("2008");
-        $(".react-datepicker__day--030:not(.react-datepicker__day--outside-month)").click();
+        $(".react-datepicker__month-select").selectOption(month);
+        $(".react-datepicker__year-select").selectOption(year);
+        $(".react-datepicker__day--0" + day +":not(.react-datepicker__day--outside-month)").click();
         $("#subjectsInput").setValue("Math").pressEnter();
         $("#hobbiesWrapper").$(byText("Sports")).click();
         $("#uploadPicture").uploadFromClasspath("img/random.jpg");
-        $("#currentAddress").setValue("Some address 1");
+        $("#currentAddress").setValue(currentAddress);
         $("#state").click();
         $("#stateCity-wrapper").$(byText("NCR")).click();
         $("#city").click();
@@ -47,7 +60,7 @@ public class RegistrationFormTests {
         $(".modal-dialog").should(appear);
         $("#example-modal-sizes-title-lg").shouldHave(text("Thanks for submitting the form"));
 
-        $(".table-responsive table").shouldHave(text("Alex"), text("Egorov"),
-                text("alex@egorov.com"), text("1234567890"), text("30 July, 2008"));
+        $(".table-responsive table").shouldHave(text(firstName), text(lastName),
+                text(email), text(phone), text(day + " " + month + "," + year));
     }
 }
