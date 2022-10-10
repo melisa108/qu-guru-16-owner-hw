@@ -3,7 +3,7 @@ package com.demoqa.tests;
 import com.demoqa.pages.RegistrationFormPage;
 import org.junit.jupiter.api.Test;
 
-public class RegistrationFormWithFakerHomework extends TestBase {
+public class RegistrationFormWithFakerHomeworkTests extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
     @Test
@@ -19,7 +19,7 @@ public class RegistrationFormWithFakerHomework extends TestBase {
                 .setSubject(subject)
                 .setHobbies(hobby)
                 .setPicture("img/" + picture)
-                .setCurrentAddress(address)
+                .setCurrentAddress(currentAddress)
                 .setAddress(state, city)
                 .clickSubmit();
 
@@ -32,7 +32,7 @@ public class RegistrationFormWithFakerHomework extends TestBase {
                 .checkResult("Subjects", subject)
                 .checkResult("Hobbies", hobby)
                 .checkResult("Picture", picture)
-                .checkResult("Address", address)
+                .checkResult("Address", currentAddress)
                 .checkResult("State and City", state + " " + city);
     }
 }

@@ -1,21 +1,24 @@
 package com.demoqa.tests;
 
 import com.codeborne.selenide.Configuration;
+import com.github.javafaker.Faker;
 import org.junit.jupiter.api.BeforeAll;
 
 public class TestBase {
-    String firstName = "Elon",
-            lastName = "Musk",
-            email = "elon@gmail.com",
-            gender = "Male",
-            phone = "1234567891",
+
+    Faker faker = new Faker();
+    String firstName = faker.name().firstName();
+    String lastName = faker.name().lastName();
+    String email = faker.internet().emailAddress();
+    String phone = faker.phoneNumber().subscriberNumber(10);
+    String currentAddress = faker.address().streetAddress();
+    String gender = "Male",
             day = "30",
             month = "September",
             year = "1965",
             subject = "Physics",
             picture = "random.jpg",
             hobby = "Music",
-            address = "St. Petersburg, Nevskiy pr, 100",
             state = "Rajasthan",
             city = "Jaipur";
 
