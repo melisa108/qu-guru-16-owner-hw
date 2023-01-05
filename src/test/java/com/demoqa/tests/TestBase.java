@@ -37,7 +37,6 @@ public class TestBase {
         Configuration.browserSize = "1500x600";
         Configuration.holdBrowserOpen = false;
         Configuration.timeout = 10000;
-        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability("enableVNC", true);
