@@ -3,7 +3,7 @@ package com.demoqa.tests;
 import com.demoqa.pages.RegistrationFormPage;
 import org.junit.jupiter.api.Test;
 
-public class RegistrationFormWithFakerHomeworkTests extends TestBase {
+public class RegistrationFormBestPracticiesTest extends TestBase {
     RegistrationFormPage registrationFormPage = new RegistrationFormPage();
 
     @Test
