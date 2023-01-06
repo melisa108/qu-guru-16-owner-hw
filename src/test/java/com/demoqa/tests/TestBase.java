@@ -35,7 +35,7 @@ public class TestBase {
         Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
         Configuration.browser = System.getProperty("browser_type", "chrome");
         Configuration.browserVersion = System.getProperty("browser_version", "100.0");
-//        Configuration.remote = System.getProperty("remote_browser", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
+        Configuration.remote = System.getProperty("remote_browser", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
 
 //        Configuration.holdBrowserOpen = false;
 
