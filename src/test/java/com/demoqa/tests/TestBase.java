@@ -2,6 +2,7 @@ package com.demoqa.tests;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.logevents.SelenideLogger;
+import com.demoqa.config.WebDriverProvider;
 import com.github.javafaker.Faker;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
@@ -31,18 +32,7 @@ public class TestBase {
 
     @BeforeAll
     static void setUp() {
-        Configuration.baseUrl = System.getProperty("base_url", "https://demoqa.com");
-        Configuration.browserSize = System.getProperty("browser_size", "1920x1080");
-        Configuration.browser = System.getProperty("browser_type", "chrome");
-        Configuration.browserVersion = System.getProperty("browser_version", "100.0");
-        Configuration.remote = System.getProperty("remote_browser", "https://user1:1234@selenoid.autotests.cloud/wd/hub");
-
-//        Configuration.holdBrowserOpen = false;
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability("enableVNC", true);
-        capabilities.setCapability("enableVideo", true);
-        Configuration.browserCapabilities = capabilities;
+        WebDriverProvider.config();
     }
 
     @BeforeEach
